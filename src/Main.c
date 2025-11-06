@@ -156,7 +156,7 @@ void World_Generate(Block* World,int dx,int dy,int dz){
 	}
 
 	float Out[dx * dz];
-	PerlinNoise2D(dx,dz,Seed,15,0.9f,Out);
+	PerlinNoise_2D_Buffer(dx,dz,Seed,15,0.9f,Out);
 
 	for(int i = 0;i<dz;i++){
 		for(int j = 0;j<dx;j++){
@@ -480,7 +480,7 @@ void Update(AlxWindow* w){
 	if(Menu==1){
 		if(GetMouse().x!=MouseBefore.x || GetMouse().y!=MouseBefore.y){
 			Vec2 d = Vec2_Sub(GetMouse(),MouseBefore);
-			Vec2 a = Vec2_Mulf(Vec2_Div(d,(Vec2){ window.Width,window.Height }),2 * PI);
+			Vec2 a = Vec2_Mulf(Vec2_Div(d,(Vec2){ window.Width,window.Height }),2 * F32_PI);
 	
 			fYaw += a.x;
 			fPitch += a.y;
@@ -573,7 +573,7 @@ void Update(AlxWindow* w){
 		vCamera = vec3d_Add(r2.p,pos);
 	}
 
-	float Border = PI * 0.5f - 0.00001;
+	float Border = F32_PI * 0.5f - 0.00001;
 	if(fPitch<-Border) fPitch = -Border;
 	if(fPitch>Border) fPitch = Border;
 
